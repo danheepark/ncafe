@@ -1,0 +1,244 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sectionTitle {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.sectionContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+/* Images */
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-3);
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--color-gray-100);
+}
+
+.primary {
+    border-color: var(--color-primary-500);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.removeImageBtn {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.primaryBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(164, 117, 81, 0.9);
+    color: white;
+    font-size: 10px;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.uploadBtn {
+    aspect-ratio: 1;
+    border: 2px dashed var(--color-gray-200);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    color: var(--color-gray-400);
+    transition: all 0.2s ease;
+}
+
+.uploadBtn:hover {
+    border-color: var(--color-primary-500);
+    color: var(--color-primary-500);
+    background-color: var(--color-primary-50);
+}
+
+/* Options */
+.optionGroups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.optionGroup {
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background-color: var(--color-gray-50);
+}
+
+.optionGroupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.optionNameInput {
+    flex: 1;
+}
+
+.deleteOptionBtn {
+    color: var(--color-gray-400);
+    transition: color 0.2s ease;
+}
+
+.deleteOptionBtn:hover {
+    color: var(--color-error);
+}
+
+.optionSettings {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-gray-700);
+    cursor: pointer;
+}
+
+.typeSelect {
+    width: auto;
+    min-width: 140px;
+}
+
+.hint {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+    margin-top: var(--space-2);
+}
+
+.emptyText {
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);
+    text-align: center;
+    padding: var(--space-6);
+    background-color: var(--color-gray-50);
+    border-radius: var(--radius-md);
+}
+
+/* Status */
+.statusGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.statusCard {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.statusCard:has(input:checked) {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-50);
+}
+
+.statusInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.statusLabel {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.statusDesc {
+    font-size: var(--text-xs);
+    color: var(--color-gray-500);
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-gray-200);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+    }
+}

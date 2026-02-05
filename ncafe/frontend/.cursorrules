@@ -1,0 +1,96 @@
+# NCafe Frontend - Cursor Rules
+
+## 프로젝트 개요
+카페 사장님용 메뉴 관리 시스템의 프론트엔드 프로젝트입니다.
+
+## 기술 스택
+- **Framework**: Next.js 15+ (App Router)
+- **Language**: TypeScript 5.x
+- **Styling**: CSS Modules + CSS Variables
+- **State Management**: Zustand
+- **Form**: React Hook Form
+- **Icons**: Lucide React
+
+## 코딩 규칙
+
+### 파일/폴더 구조
+- 컴포넌트는 PascalCase로 명명 (예: `MenuCard.tsx`)
+- 스타일 파일은 `ComponentName.module.css` 형식
+- 페이지별 컴포넌트는 `_components` 폴더에 위치
+- 전역 공용 컴포넌트만 `/components/common`에 위치
+
+### TypeScript
+- 모든 컴포넌트에 명시적 타입 정의
+- interface 사용 권장 (type보다)
+- props interface는 `ComponentNameProps` 형식으로 명명
+
+### React/Next.js
+- 클라이언트 컴포넌트는 파일 상단에 `'use client'` 명시
+- 서버 컴포넌트 우선 사용 (가능한 경우)
+- Next.js Image 컴포넌트 사용 (이미지 최적화)
+- Next.js Link 컴포넌트 사용 (네비게이션)
+
+### CSS Modules
+- 클래스명은 camelCase 사용
+- CSS Variables 활용 (globals.css에 정의됨)
+- 반응형 디자인 적용 (모바일 퍼스트 권장)
+
+### CSS Variables (디자인 토큰)
+```css
+/* Colors */
+--color-primary-500: #a47551;  /* 메인 컬러 */
+--color-gray-900: #171717;     /* 텍스트 */
+--color-error: #ef4444;        /* 에러 */
+--color-success: #22c55e;      /* 성공 */
+
+/* Spacing */
+--space-1 ~ --space-12
+
+/* Typography */
+--text-xs ~ --text-3xl
+
+/* Border Radius */
+--radius-sm ~ --radius-full
+```
+
+### 컴포넌트 작성 패턴
+```tsx
+'use client';
+
+import React from 'react';
+import styles from './ComponentName.module.css';
+
+interface ComponentNameProps {
+  // props 정의
+}
+
+const ComponentName = ({ ...props }: ComponentNameProps) => {
+  return (
+    <div className={styles.container}>
+      {/* 내용 */}
+    </div>
+  );
+};
+
+export default ComponentName;
+```
+
+## 주요 디렉토리
+- `/app` - Next.js App Router 페이지
+- `/app/admin` - 관리자 페이지
+- `/app/admin/menus` - 메뉴 관리 페이지
+- `/components/common` - 전역 공용 컴포넌트
+- `/types` - TypeScript 타입 정의
+- `/mocks` - 목업 데이터
+- `/stores` - Zustand 스토어
+- `/hooks` - 커스텀 훅
+
+## 금지 사항
+- TailwindCSS 사용 금지 (CSS Modules 사용)
+- inline 스타일 사용 금지
+- `any` 타입 사용 금지
+- console.log 커밋 금지
+
+## 참고
+- 청사진 문서: `/FRONTEND_BLUEPRINT.md`
+- 디자인 테마: 커피숍 갈색 계열 (Warm Brown)

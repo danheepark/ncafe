@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.new_cafe.app'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// 로컬에 있는 postgresql jar 파일을 직접 사용하도록 설정
+	implementation files('src/main/lib/postgresql-42.7.9.jar')
+	implementation 'org.postgresql:postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
+
+task runRepoApp(type: JavaExec) {
+    group = 'Verification'
+    description = 'Runs the repository test App.'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.new_cafe.app.backend.App'
+    standardInput = System.in
+}
