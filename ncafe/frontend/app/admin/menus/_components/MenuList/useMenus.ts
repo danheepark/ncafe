@@ -21,7 +21,8 @@ export function useMenus(selectedCategory: string | number | null | undefined, s
         const fetchMenus = async () => {
             const param = new URLSearchParams();
             try {
-                const url = new URL('http://localhost:8080/admin/menus');
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+                const url = new URL(`${apiUrl}/admin/menus`);
                 if (selectedCategory && selectedCategory !== 'all') {
                     param.set('categoryId', String(selectedCategory));
                 }

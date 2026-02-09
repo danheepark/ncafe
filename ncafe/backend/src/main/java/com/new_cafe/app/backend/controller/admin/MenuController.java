@@ -1,7 +1,5 @@
 package com.new_cafe.app.backend.controller.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.new_cafe.app.backend.entity.Menu;
 import com.new_cafe.app.backend.dto.MenuListRequest;
 import com.new_cafe.app.backend.dto.MenuListResponse;
-import com.new_cafe.app.backend.dto.MenuResponse;
-import java.util.stream.Collectors;
+import com.new_cafe.app.backend.dto.MenuDetailResponse;
+import com.new_cafe.app.backend.dto.MenuImageListResponse;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.new_cafe.app.backend.service.MenuService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -24,7 +22,7 @@ public class MenuController {
 
     private MenuService menuService;
 
-    @Autowired //Constructor Injection
+    @Autowired // Constructor Injection
     public MenuController(MenuService menuService) {
         this.menuService = menuService;
     }
@@ -38,8 +36,16 @@ public class MenuController {
 
     // 상세 조회 데이터 반환
     @GetMapping("/admin/menus/{id}")
-    public String editMenu() {
-        return "editMenu";
+    public MenuDetailResponse detail(@PathVariable("id") Long id) {
+        MenuDetailResponse response = menuService.getMenu(id);
+        return response;
+    }
+
+    // 메뉴 이미지 조회
+    @GetMapping("/admin/menus/{id}/menu-images")
+    public MenuImageListResponse getMenuImages(@PathVariable("id") Long id) {
+        MenuImageListResponse response = menuService.getMenuImages(id);
+        return response;
     }
 
     // 메뉴 생성 데이터 입력

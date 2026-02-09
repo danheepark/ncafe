@@ -101,7 +101,28 @@ public class NewMenuRepository implements MenuRepository {
         return list;
     }
 
+    @Override
+    public Menu findById(Long id) {
+        String sql = "SELECT m.*, c.name as category_name FROM menus m LEFT JOIN categories c ON m.category_id = c.id WHERE m.id = ?";
+
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setLong(1, id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapRowToMenu(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private Menu mapRowToMenu(ResultSet rs) throws SQLException {
+
         Menu menu = Menu.builder()
                 .id(rs.getLong("id"))
                 .korName(rs.getString("kor_name"))

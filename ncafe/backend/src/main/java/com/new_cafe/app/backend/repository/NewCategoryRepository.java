@@ -21,6 +21,17 @@ public class NewCategoryRepository implements CategoryRepository {
     @Autowired
     DataSource dataSource;
 
+    // 카테고리별 기본 아이콘 매핑
+    private static final java.util.Map<String, String> DEFAULT_ICONS = java.util.Map.of(
+            "커피", "☕",
+            "논커피", "🧋",
+            "샌드위치", "🥪",
+            "디저트", "🍰",
+            "음료", "🥤",
+            "베이커리", "🥐",
+            "스무디", "🍹",
+            "차", "🍵");
+
     @Override
     public List<Category> findAll() {
         List<Category> list = new ArrayList<>();
@@ -32,9 +43,25 @@ public class NewCategoryRepository implements CategoryRepository {
                 ResultSet rs = stmt.executeQuery(sql)) {
             // 3. 결과
             while (rs.next()) {
+                String name = rs.getString("name");
+                String icon = null;
+
+                // icon 컬럼이 있으면 가져오기
+                try {
+                    icon = rs.getString("icon");
+                } catch (SQLException e) {
+                    // icon 컬럼이 없는 경우 무시
+                }
+
+                // icon이 없으면 기본 아이콘 사용
+                if (icon == null || icon.isEmpty()) {
+                    icon = DEFAULT_ICONS.getOrDefault(name, "📋");
+                }
+
                 Category category = Category.builder()
                         .id(rs.getString("id"))
-                        .name(rs.getString("name"))
+                        .name(name)
+                        .icon(icon)
                         .sortOrder(rs.getInt("sort_order"))
                         .build();
                 list.add(category);

@@ -9,6 +9,7 @@ import com.new_cafe.app.backend.dto.MenuCreateResponse;
 import com.new_cafe.app.backend.dto.MenuDetailResponse;
 import com.new_cafe.app.backend.dto.MenuListRequest;
 import com.new_cafe.app.backend.dto.MenuListResponse;
+import com.new_cafe.app.backend.dto.MenuImageListResponse;
 import com.new_cafe.app.backend.dto.MenuUpdateRequest;
 import com.new_cafe.app.backend.entity.Menu;
 import com.new_cafe.app.backend.entity.MenuImage;
@@ -86,7 +87,43 @@ public class NewMenuService implements MenuService {
 
     @Override
     public MenuDetailResponse getMenu(Long id) {
-        return null; // 구현 예정
+        Menu menu = menuRepository.findById(id);
+        if (menu == null) {
+            return null;
+        }
+
+        List<MenuImage> images = menuImageRepository.findAllByMenuId(menu.getId());
+        String imageSrc = "blank.png";
+        if (images != null && !images.isEmpty()) {
+            imageSrc = images.get(0).getSrcUrl();
+        }
+
+        String categoryName = "기타";
+        if (menu.getCategory() != null) {
+            categoryName = menu.getCategory().getName();
+        }
+
+        return MenuDetailResponse.builder()
+                .id(menu.getId())
+                .korName(menu.getKorName())
+                .engName(menu.getEngName())
+                .description(menu.getDescription())
+                .price(menu.getPrice() != null ? parsePrice(menu.getPrice()) : 0)
+                .categoryId(menu.getCategoryId())
+                .categoryName(categoryName)
+                .imageSrc(imageSrc)
+                .isAvailable(menu.getIsAvailable() != null ? menu.getIsAvailable() : true)
+                .createdAt(menu.getCreatedAt())
+                .updatedAt(menu.getUpdatedAt())
+                .build();
+    }
+
+    @Override
+    public MenuImageListResponse getMenuImages(Long id) {
+        List<MenuImage> images = menuImageRepository.findAllByMenuId(id);
+        return MenuImageListResponse.builder()
+                .images(images != null ? images : List.of())
+                .build();
     }
 
     @Override

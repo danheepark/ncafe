@@ -20,7 +20,7 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
 
     return (
         <div className={`${styles.card} ${menu.isAvailable ? '' : styles.soldOut}`}>
-            <Link href={`/menus/${menu.id}`} className={styles.cardLink}>
+            <Link href={`/admin/menus/${menu.id}`} className={styles.cardLink}>
                 <div className={styles.imageContainer}>
                     {imageUrl ? (
                         <Image
@@ -63,18 +63,14 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
                     <Power size={16} />
                     <span>{menu.isAvailable ? '판매중으로' : '품절로'}</span>
                 </button>
-                <button
-                    type="button"
+                <Link
+                    href={`/admin/menus/${menu.id}/edit`}
                     className={styles.actionBtn}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        onEdit(menu.id);
-                    }}
+                    onClick={(e) => e.stopPropagation()}
                     title="수정"
                 >
                     <Edit2 size={16} />
-                </button>
+                </Link>
                 <button
                     type="button"
                     className={`${styles.actionBtn} ${styles.btnDelete}`}

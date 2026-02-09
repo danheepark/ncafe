@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import styles from './CategoryList.module.css';
 import { useCategories } from './useCategories';
 
@@ -11,19 +10,6 @@ interface CategoryListProps {
 
 export default function CategoryList({ selectedCategory, setSelectedCategory }: CategoryListProps) {
     const { categories } = useCategories();
-    // const [selectedCategory, setSelectedCategory] = useState('all');
-
-    // const onSelect = (id: string) => {
-    //     // setSelectedCategory(id);
-    //     console.log(`Category selected: ${id}`);
-    //     // 부모 컴포넌트에 선택된 카테고리 ID 전달
-    //     if (onCategoryChange) {
-    //         onCategoryChange(id);
-    //     }
-    // };
-
-    // '전체' 카테고리를 앞에 추가
-    // const allCategories = [{ id: 'all', name: '전체' }, ...categories];
 
     return (
         <div className={styles.container}>
@@ -34,7 +20,11 @@ export default function CategoryList({ selectedCategory, setSelectedCategory }: 
                     setSelectedCategory(null);
                 }}
             >
-                전체
+
+                <div className={styles.tabContent}>
+                    <span className="material-symbols-rounded" style={{ fontSize: '18px' }}>grid_view</span>
+                    <span>전체</span>
+                </div>
 
             </button>
             {/*카테고리 탭*/}
@@ -44,11 +34,14 @@ export default function CategoryList({ selectedCategory, setSelectedCategory }: 
                     className={`${styles.tab} ${selectedCategory === category.id ? styles.active : ''}`}
                     onClick={() => {
                         setSelectedCategory(category.id)
-
                     }}
                 >
-                    {category.name}
-
+                    <div className={styles.tabContent}>
+                        <span className={styles.categoryInfo}>
+                            <span className={styles.icon}>{category.icon}</span>
+                            <span>{category.name}</span>
+                        </span>
+                    </div>
                 </button>
             ))}
         </div>

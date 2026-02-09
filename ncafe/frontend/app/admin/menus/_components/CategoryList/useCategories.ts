@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export interface CategoryResponseDto {
     id: string;
     name: string;
+    icon?: string;
 }
 
 export interface CategoryListResponseDto {
@@ -19,13 +20,15 @@ export function useCategories() {
         const fetchCategories = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch('http://localhost:8080/admin/categories');
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+                const response = await fetch(`${apiUrl}/admin/categories`);
                 if (!response.ok) throw new Error('Failed to fetch categories');
 
                 const data = await response.json();
                 const mappedData = data.map((item: any) => ({
                     id: String(item.id),
-                    name: item.name
+                    name: item.name,
+                    icon: item.icon || '❤️'
                 }));
                 setCategories(mappedData);
             } catch (error) {

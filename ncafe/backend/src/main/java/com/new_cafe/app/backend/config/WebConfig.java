@@ -20,6 +20,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
+        // /images/** 경로로 upload 폴더의 이미지 서빙
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:./upload/")
+                .setCachePeriod(0);
+
+        // 기존 정적 리소스 설정
         registry.addResourceHandler("/**")
                 .addResourceLocations("file:./upload/", "classpath:/static/")
                 .setCachePeriod(0);
