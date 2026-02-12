@@ -1,7 +1,7 @@
 package com.new_cafe.app.backend.dto;
 
 import java.util.List;
-import com.new_cafe.app.backend.entity.MenuImage;
+import com.new_cafe.app.backend.dto.MenuImageResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MenuImageListResponse {
-    private List<MenuImage> images;
+    private List<MenuImageResponse> images;
 }

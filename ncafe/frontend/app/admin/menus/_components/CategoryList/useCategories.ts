@@ -20,8 +20,10 @@ export function useCategories() {
         const fetchCategories = async () => {
             try {
                 setIsLoading(true);
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-                const response = await fetch(`${apiUrl}/admin/categories`);
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+                const url = new URL(`${baseUrl}/admin/categories`, window.location.origin);
+                const response = await fetch(url.toString());
                 if (!response.ok) throw new Error('Failed to fetch categories');
 
                 const data = await response.json();

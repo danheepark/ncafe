@@ -24,8 +24,11 @@ export function useMenuDetail(id: string) {
                 setLoading(true);
                 setError(null);
 
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-                const response = await fetch(`${apiUrl}/admin/menus/${id}`, {
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+                const url = new URL(`${baseUrl}/admin/menus/${id}`, window.location.origin);
+
+                const response = await fetch(url.toString(), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

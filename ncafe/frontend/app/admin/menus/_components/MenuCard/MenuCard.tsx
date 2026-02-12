@@ -24,11 +24,10 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
                 <div className={styles.imageContainer}>
                     {imageUrl ? (
                         <Image
-                            src={`http://localhost:8080/${menu.imageSrc}`}
+                            src={`${(process.env.NEXT_PUBLIC_API_URL || '/api/v1').replace(/\/$/, '')}/images/${menu.imageSrc}`}
                             alt={menu.korName}
                             fill
                             className={styles.image}
-                            unoptimized
                             onLoad={() => console.log(`Image loaded: ${menu.imageSrc}`)}
                             onError={() => console.error(`Image failed to load: ${menu.imageSrc}`)}
                         />

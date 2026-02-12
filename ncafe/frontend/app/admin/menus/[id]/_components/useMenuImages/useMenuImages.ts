@@ -7,6 +7,7 @@ export interface MenuImage {
     srcUrl: string;
     sortOrder: number;
     createdAt: string;
+    altText: string; // 추가된 필드
 }
 
 // API 응답 타입
@@ -25,8 +26,12 @@ export function useMenuImages(menuId: string) {
                 setLoading(true);
                 setError(null);
 
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-                const response = await fetch(`${apiUrl}/admin/menus/${menuId}/menu-images`, {
+                // 강사님 가이드 방식 적용: /api/v1 경로와 URL 객체 사용
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+                const url = new URL(`${baseUrl}/admin/menus/${menuId}/menu-images`, window.location.origin);
+
+                const response = await fetch(url.toString(), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

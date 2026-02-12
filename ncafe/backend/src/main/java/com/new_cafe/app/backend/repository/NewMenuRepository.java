@@ -131,8 +131,10 @@ public class NewMenuRepository implements MenuRepository {
                 .price(rs.getString("price"))
                 .categoryId(rs.getLong("category_id"))
                 .isAvailable(rs.getBoolean("is_available"))
-                .createdAt(rs.getTimestamp("created_at").toLocalDateTime())
-                .updatedAt(rs.getTimestamp("updated_at").toLocalDateTime())
+                .createdAt(
+                        rs.getTimestamp("created_at") != null ? rs.getTimestamp("created_at").toLocalDateTime() : null)
+                .updatedAt(
+                        rs.getTimestamp("updated_at") != null ? rs.getTimestamp("updated_at").toLocalDateTime() : null)
                 .build();
 
         // category_name 컬럼이 있는 경우 Category 객체 생성

@@ -33,7 +33,7 @@ export default function MenuListItem({ menu }: MenuListItemProps) {
                 <div
                     className={styles.imagePlaceholder}
                     style={menu.imageSrc ? {
-                        backgroundImage: `url(http://localhost:8080/${menu.imageSrc})`,
+                        backgroundImage: `url(${(process.env.NEXT_PUBLIC_API_URL || '/api/v1').replace(/\/$/, '')}/images/${menu.imageSrc})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     } : {}}

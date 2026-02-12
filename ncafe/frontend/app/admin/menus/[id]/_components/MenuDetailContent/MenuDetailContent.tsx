@@ -27,8 +27,11 @@ export default function MenuDetailContent({ id }: MenuDetailContentProps) {
     const handleDelete = async () => {
         if (confirm('정말로 이 메뉴를 삭제하시겠습니까?')) {
             try {
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
-                const response = await fetch(`${apiUrl}/admin/menus/${id}`, {
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+                const url = new URL(`${baseUrl}/admin/menus/${id}`, window.location.origin);
+
+                const response = await fetch(url.toString(), {
                     method: 'DELETE',
                 });
 

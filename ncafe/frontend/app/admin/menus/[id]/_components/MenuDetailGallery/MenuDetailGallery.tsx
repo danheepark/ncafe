@@ -27,7 +27,9 @@ export default function MenuDetailGallery({ menuId, menuName }: MenuDetailGaller
 
     // 이미지 URL 생성
     const getImageUrl = (src: string) => {
-        return `http://localhost:8080/images/${src}`;
+        const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+        const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
+        return `${baseUrl}/images/${src}`;
     };
 
     const handleAddImage = () => {
@@ -90,10 +92,9 @@ export default function MenuDetailGallery({ menuId, menuName }: MenuDetailGaller
                             <div className={styles.galleryImageWrapper}>
                                 <Image
                                     src={getImageUrl(image.srcUrl)}
-                                    alt={menuName}
+                                    alt={image.altText} // 하드코딩 대신 서버에서 받은 altText 사용
                                     fill
                                     className={styles.galleryImage}
-                                    unoptimized
                                 />
                             </div>
                             <div className={styles.galleryItemActions}>

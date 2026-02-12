@@ -15,6 +15,7 @@ import com.new_cafe.app.backend.entity.Menu;
 import com.new_cafe.app.backend.entity.MenuImage;
 import com.new_cafe.app.backend.repository.MenuRepository;
 import com.new_cafe.app.backend.repository.MenuImageRepository;
+import com.new_cafe.app.backend.dto.MenuImageResponse;
 import com.new_cafe.app.backend.dto.MenuResponse;
 
 @Service
@@ -120,9 +121,31 @@ public class NewMenuService implements MenuService {
 
     @Override
     public MenuImageListResponse getMenuImages(Long id) {
+        Menu menu = menuRepository.findById(id);
         List<MenuImage> images = menuImageRepository.findAllByMenuId(id);
+
+        String altText = "";
+        if (menu != null) {
+            altText = menu.getKorName();
+            if (menu.getDescription() != null && !menu.getDescription().isEmpty()) {
+                altText += " - " + menu.getDescription();
+            }
+        }
+
+        final String finalAltText = altText;
+        List<MenuImageResponse> responses = images != null ? images.stream()
+                .map(img -> MenuImageResponse.builder()
+                        .id(img.getId())
+                        .menuId(img.getMenuId())
+                        .srcUrl(img.getSrcUrl())
+                        .createdAt(img.getCreatedAt())
+                        .sortOrder(img.getSortOrder())
+                        .altText(finalAltText)
+                        .build())
+                .toList() : List.of();
+
         return MenuImageListResponse.builder()
-                .images(images != null ? images : List.of())
+                .images(responses)
                 .build();
     }
 
