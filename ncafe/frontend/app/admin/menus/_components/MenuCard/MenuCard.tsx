@@ -24,7 +24,7 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
                 <div className={styles.imageContainer}>
                     {imageUrl ? (
                         <Image
-                            src={`${(process.env.NEXT_PUBLIC_API_URL || '/api/v1').replace(/\/$/, '')}/images/${menu.imageSrc}`}
+                            src={`/images/${menu.imageSrc}`}
                             alt={menu.korName}
                             fill
                             className={styles.image}
