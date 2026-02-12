@@ -50,12 +50,17 @@ public class NewMenuService implements MenuService {
         List<MenuResponse> menuResponses = menus
                 .stream()
                 .map(menu -> {
-                    // TODO: 성능 최적화를 위해 이미지를 In-query로 한 번에 가져오는 것이 좋으나,
-                    // 현재는 기존 로직을 유지하되 안정성을 강화합니다.
-                    List<MenuImage> images = menuImageRepository.findAllByMenuId(menu.getId());
+                    // TODO: 성능 향상을 위해 이미지 조인 쿼리 도입 권장
+                    // 우선은 기존 로직을 유지하되, 이미지가 없을 경우의 기본값을 안전하게 처리합니다.
                     String imageSrc = "blank.png";
-                    if (images != null && !images.isEmpty()) {
-                        imageSrc = images.get(0).getSrcUrl();
+                    try {
+                        List<MenuImage> images = menuImageRepository.findAllByMenuId(menu.getId());
+                        if (images != null && !images.isEmpty()) {
+                            imageSrc = images.get(0).getSrcUrl();
+                        }
+                    } catch (Exception e) {
+                        // DB 테이블이 없거나 쿼리 실패 시 기본 이미지 사용 (504 타임아웃 방지)
+                        System.err.println("Menu image fetch failed for menu " + menu.getId() + ": " + e.getMessage());
                     }
 
                     String categoryName = "기타";
@@ -70,7 +75,7 @@ public class NewMenuService implements MenuService {
                             .description(menu.getDescription())
                             .price(menu.getPrice() != null ? parsePrice(menu.getPrice()) : 0)
                             .categoryName(categoryName)
-                            .imageSrc(imageSrc) // 이 값이 프론트엔드로 전달됩니다.
+                            .imageSrc(imageSrc)
                             .isAvailable(menu.getIsAvailable() != null ? menu.getIsAvailable() : true)
                             .isSoldOut(false)
                             .sortOrder(1)

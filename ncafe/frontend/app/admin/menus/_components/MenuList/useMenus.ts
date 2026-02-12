@@ -22,7 +22,7 @@ export function useMenus(selectedCategory: string | number | null | undefined, s
             try {
                 // 1. 강사님 가이드: URL 객체를 사용하여 안전하게 주소 생성
                 // NEXT_PUBLIC_API_URL이 있으면 사용하고, 없으면 기본값 /api/v1 사용
-                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
                 // baseApiUrl 뒤에 경로를 붙일 때 슬래시가 중복되지 않도록 처리
                 const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
                 const url = new URL(`${baseUrl}/admin/menus`, window.location.origin);
