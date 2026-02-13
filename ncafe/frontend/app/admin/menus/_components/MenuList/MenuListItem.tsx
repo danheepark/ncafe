@@ -30,14 +30,17 @@ export default function MenuListItem({ menu }: MenuListItemProps) {
     return (
         <Link href={`/admin/menus/${menu.id}`} className={styles.cardLink}>
             <div className={styles.card}>
-                <div
-                    className={styles.imagePlaceholder}
-                    style={menu.imageSrc ? {
-                        backgroundImage: `url(/images/${menu.imageSrc})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    } : {}}
-                />
+                <div className={styles.imageContainer}>
+                    {menu.imageSrc ? (
+                        <img
+                            src={`/images/${menu.imageSrc}`}
+                            alt={menu.korName}
+                            className={styles.image}
+                        />
+                    ) : (
+                        <div className={styles.placeholder}>이미지 없음</div>
+                    )}
+                </div>
                 <div className={styles.content}>
                     <div className={styles.header}>
                         <h3 className={styles.name}>{menu.korName}</h3>

@@ -27,7 +27,7 @@ export function useMenuImages(menuId: string) {
                 setError(null);
 
                 // 강사님 가이드 방식 적용: /api/v1 경로와 URL 객체 사용
-                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
                 const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
                 const url = new URL(`${baseUrl}/admin/menus/${menuId}/menu-images`, window.location.origin);
 

@@ -20,7 +20,7 @@ export function useCategories() {
         const fetchCategories = async () => {
             try {
                 setIsLoading(true);
-                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+                const baseApiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
                 const baseUrl = baseApiUrl.endsWith('/') ? baseApiUrl.slice(0, -1) : baseApiUrl;
                 const url = new URL(`${baseUrl}/admin/categories`, window.location.origin);
                 const response = await fetch(url.toString());
