@@ -27,7 +27,7 @@
     font-family: var(--font-sans);
     font-size: 1rem;
     /* 히어로 subtext와 통일 */
-    font-weight: 300;
+    font-weight: 400;
     color: var(--lux-gray);
     line-height: 1.8;
 }
@@ -248,69 +248,59 @@
 
 .introLine {
     width: 120px;
-    height: 1.4px;
+    height: 1.2px;
     background: linear-gradient(90deg, transparent 0%, rgba(179, 61, 61, 0.8) 50%, transparent 100%);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 99px;
+}
+
+.introSection .introLine {
+    width: 120px;
+    height: 12px;
+    /* 대칭형: 중앙(50%) 기준 양쪽에 8.5%씩 간격을 둠 (41.5% + 17% gap + 41.5%) */
+    background:
+        linear-gradient(to right, transparent, rgba(179, 61, 61, 0.7)) no-repeat left center / 41.5% 1.2px,
+        linear-gradient(to left, transparent, rgba(179, 61, 61, 0.7)) no-repeat right center / 41.5% 1.2px;
 }
 
 .introLineLeft {
-    background: linear-gradient(90deg, transparent 0%, rgba(179, 61, 61, 0.8) 25%, transparent 100%);
+    /* 마름모(0%) 기준 간격을 8.5%로 축소 */
+    background:
+        linear-gradient(to left, transparent, rgba(179, 61, 61, 0.7)) no-repeat right center / 91.5% 1.2px;
 }
 
 .introLineRight {
-    background: linear-gradient(90deg, transparent 0%, rgba(179, 61, 61, 0.8) 75%, transparent 100%);
+    /* 마름모(100%) 기준 간격을 8.5%로 축소 */
+    background:
+        linear-gradient(to right, transparent, rgba(179, 61, 61, 0.7)) no-repeat left center / 91.5% 1.2px;
 }
 
 .introLine::after {
     content: '';
-    width: 12px;
-    height: 12px;
+    width: 5px;
+    height: 5px;
     background-color: #b33d3d;
     position: absolute;
-    /* 하트 모양을 위한 마스크 설정 */
-    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
-    mask-size: contain;
-    -webkit-mask-size: contain;
-    transform: translateY(1px);
-    animation: heartbeat 1.5s ease-in-out infinite;
+    top: 50%;
+    left: 50%;
+    /* 마름모의 중앙이 앵커 포인트에 정확히 오도록 고정합니다 */
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
-@keyframes heartbeat {
 
-    0%,
-    70%,
-    100% {
-        transform: translateY(1px) scale(1);
-    }
 
-    15% {
-        transform: translateY(1px) scale(1.2);
-    }
 
-    30% {
-        transform: translateY(1px) scale(1.1);
-    }
 
-    45% {
-        transform: translateY(1px) scale(1.25);
-    }
-}
 
-/* Circle at 1/4 from left (left end + 30px) */
+/* 마름모 위치 조정 (중심 기준 쏠림 반영) */
 .introLineLeft::after {
-    left: 30px;
-    right: auto;
+    left: 0%;
 }
 
-/* Circle at 1/4 from right (right end - 30px) */
 .introLineRight::after {
-    right: 30px;
-    left: auto;
+    left: 100%;
 }
 
 /* Section 2 & 3: Split Layouts */
