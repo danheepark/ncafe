@@ -1,0 +1,113 @@
+/* LoginForm 컴포넌트 스타일 */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--lux-espresso);
+    letter-spacing: 0.02em;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: var(--space-4);
+    color: var(--lux-gray);
+    pointer-events: none;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 20px + var(--space-3));
+    border: 1.5px solid var(--lux-gray-light);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: var(--font-sans);
+    background-color: #fff;
+    color: var(--lux-espresso);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--lux-gray);
+    font-size: var(--text-sm);
+}
+
+.input:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(179, 61, 61, 0.1);
+}
+
+.input:focus~.inputIcon,
+.inputWrapper:focus-within .inputIcon {
+    color: var(--color-primary-500);
+}
+
+.errorText {
+    font-size: var(--text-xs);
+    color: var(--color-error);
+    margin-top: var(--space-1);
+}
+
+.submitButton {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.03em;
+    margin-top: var(--space-2);
+}
+
+.submitButton:hover:not(:disabled) {
+    opacity: 0.92;
+    box-shadow: 0 4px 16px rgba(179, 61, 61, 0.35);
+    transform: translateY(-1px);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.errorBanner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-md);
+    color: #991b1b;
+    font-size: var(--text-sm);
+}

@@ -61,6 +61,9 @@ export default function Home() {
             <Link href="/admin/menus" className={styles.primaryCTA}>
               지금 시작하기
             </Link>
+            <Link href="/admin/login" className={styles.secondaryCTA}>
+              로그인
+            </Link>
           </div>
 
         </div>

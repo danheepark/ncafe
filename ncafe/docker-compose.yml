@@ -49,3 +49,17 @@ services:
 networks:
   ncafe-net:
     driver: bridge
+
+# db 서비스 추가 
+db:
+    image: postgres:15
+    container_name: danhee-db
+    restart: always
+    environment:
+      POSTGRES_DB: ncafedb
+      POSTGRES_USER: ncafe
+      POSTGRES_PASSWORD: danhee123
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
