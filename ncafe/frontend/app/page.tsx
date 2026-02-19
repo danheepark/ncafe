@@ -142,7 +142,7 @@ export default function Home() {
 
       {/* TESTIMONIAL MARQUEE SECTION */}
       <section className={styles.reviewSection}>
-        <h2 className={styles.reviewTitle}>공간에 온전히 집중하게 된 사람들의 이야기</h2>
+        <h2 className={styles.headline_md}>공간에 온전히 집중하게 된 사람들의 이야기</h2>
         <div className={styles.marqueeContainer}>
           <div className={styles.marqueeTrack}>
             {reviews.map((review, index) => (
@@ -174,7 +174,7 @@ export default function Home() {
         />
         <div className={styles.bottomOverlay} />
         <h2 className={styles.fullWidthHeadline}>
-          작은 변화로, 하루가 달라집니다
+          작은 변화로, 하루가 달라집니다.
         </h2>
       </section>
 
