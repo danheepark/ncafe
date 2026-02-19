@@ -274,6 +274,7 @@
     mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
     mask-size: contain;
     -webkit-mask-size: contain;
+    transform: translateY(1px);
 }
 
 /* Circle at 1/4 from left (left end + 30px) */
@@ -400,10 +401,10 @@
     width: 100%;
     height: 85vh;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding-bottom: 8vh;
-    padding-left: 8%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10vh;
+    /* 중간에서 살짝 아래로 배치 */
     overflow: hidden;
 }
 
@@ -421,12 +422,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* Diagonal gradient: darkest at bottom-left, fades to top-right */
-    background: linear-gradient(135deg,
-            rgba(0, 0, 0, 0.85) 0%,
-            rgba(0, 0, 0, 0.5) 35%,
-            rgba(0, 0, 0, 0.15) 65%,
-            transparent 100%);
+    /* 아래서 위로 옅어지는 그라데이션 */
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.3) 40%,
+            transparent 80%);
     z-index: 2;
 }
 
@@ -434,11 +434,11 @@
     position: relative;
     z-index: 5;
     font-family: var(--font-sans);
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    font-size: clamp(1.2rem, 3.5vw, 2.8rem);
     font-weight: 500;
     color: #ffffff;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-    text-align: left;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    text-align: center;
     line-height: 1.4;
     letter-spacing: -0.01em;
 }

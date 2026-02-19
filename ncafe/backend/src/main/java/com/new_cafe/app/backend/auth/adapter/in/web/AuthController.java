@@ -5,6 +5,7 @@ import com.new_cafe.app.backend.auth.application.port.in.LoginCommand;
 import com.new_cafe.app.backend.auth.application.port.in.LoginUseCase;
 import com.new_cafe.app.backend.auth.application.port.in.LogoutUseCase;
 import com.new_cafe.app.backend.auth.domain.AuthSession;
+import com.new_cafe.app.backend.auth.adapter.in.web.dto.*;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

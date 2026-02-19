@@ -174,8 +174,7 @@ export default function Home() {
         />
         <div className={styles.bottomOverlay} />
         <h2 className={styles.fullWidthHeadline}>
-          작은 변화로,
-          <br /> 하루가 달라집니다
+          작은 변화로, 하루가 달라집니다
         </h2>
       </section>
 
