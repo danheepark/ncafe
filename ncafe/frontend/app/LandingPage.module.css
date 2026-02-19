@@ -119,11 +119,14 @@
 }
 
 .benefitStats {
-    margin-top: 6rem;
+    margin-top: 5rem;
     display: flex;
-    gap: 4rem;
+    justify-content: center;
+    gap: 5rem;
     border-top: 1px solid var(--lux-gray-light);
     padding-top: 3.5rem;
+    width: 100%;
+    max-width: 700px;
 }
 
 .statItem {

@@ -63,20 +63,6 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className={styles.benefitStats}>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>30%+</span>
-              <span className={styles.statLabel}>운영 시간 단축</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>1.5x</span>
-              <span className={styles.statLabel}>주문 처리 속도</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>0%</span>
-              <span className={styles.statLabel}>불필요한 비용</span>
-            </div>
-          </div>
         </div>
       </header>
 
@@ -90,6 +76,21 @@ export default function Home() {
           복잡한 관리 대신 <br />
           손님과 공간에 더 집중할 수 있도록 돕습니다.
         </p>
+
+        <div className={styles.benefitStats}>
+          <div className={styles.statItem}>
+            <span className={styles.statNumber}>30%+</span>
+            <span className={styles.statLabel}>운영 시간 단축</span>
+          </div>
+          <div className={styles.statItem}>
+            <span className={styles.statNumber}>1.5x</span>
+            <span className={styles.statLabel}>주문 처리 속도</span>
+          </div>
+          <div className={styles.statItem}>
+            <span className={styles.statNumber}>0%</span>
+            <span className={styles.statLabel}>불필요한 비용</span>
+          </div>
+        </div>
       </section>
 
       {/* SECTION 2 — 이미지 + 텍스트 (좌우 분할) */}
