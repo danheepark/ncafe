@@ -27,6 +27,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 }
 
+jar {
+	enabled = false // plain JAR 생성 안 함 (Dockerfile COPY *.jar 충돌 방지)
+}
+
 task runRepoApp(type: JavaExec) {
     group = 'Verification'
     description = 'Runs the repository test App.'
