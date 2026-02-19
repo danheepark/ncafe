@@ -11,9 +11,9 @@ services:
       - "8080:8080"
     environment:
       # 외부 PostgreSQL DB 연결 정보 (application.properties를 환경변수로 오버라이드)
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://db.newlecture.com:5432/ncafedb?useSSL=false&allowPublicKeyRetrieval=true}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://db:5432/ncafedb}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-ncafe}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-new_ibm2}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-danhee123}
     volumes:
       # 업로드된 파일을 호스트와 공유 (컨테이너 재시작 시 데이터 유지)
       - /home/danheepark/www/ncafe/ncafe/upload:/app/upload
@@ -46,12 +46,8 @@ services:
       backend:
         condition: service_started
 
-networks:
-  ncafe-net:
-    driver: bridge
-
-# db 서비스 추가 
-db:
+  # db 서비스 추가 
+  db:
     image: postgres:15
     container_name: danhee-db
     restart: always
@@ -63,3 +59,9 @@ db:
       - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - ncafe-net
+
+networks:
+  ncafe-net:
+    driver: bridge
