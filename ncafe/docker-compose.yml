@@ -16,7 +16,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-new_ibm2}
     volumes:
       # 업로드된 파일을 호스트와 공유 (컨테이너 재시작 시 데이터 유지)
-      - /home/user/dist/ncafe/upload:/app/upload
+      - /home/danheepark/www/ncafe/ncafe/upload:/app/upload
     networks:
       - ncafe-net
     healthcheck:
