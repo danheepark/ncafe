@@ -4,8 +4,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: ${danheepark:-ncafe}-backend
-    restart: unless-stopped
+    container_name: danhee-final-backend-v1
+    restart: always
     ports:
       # .env 파일의 BACKEND_PORT로 호스트 포트 변경 가능 (기본값: 8080)
       - "8080:8080"
@@ -31,8 +31,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: ${danheepark:-ncafe}-frontend
-    restart: unless-stopped
+    container_name: danhee-final-frontend-v1
+    restart: always
     ports:
       # .env 파일의 FRONTEND_PORT로 호스트 포트 변경 가능 (기본값: 3022)
       - "3022:3000"
