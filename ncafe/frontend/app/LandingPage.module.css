@@ -247,61 +247,20 @@
 }
 
 .introLine {
-    width: 120px;
-    height: 1.2px;
-    background: linear-gradient(90deg, transparent 0%, rgba(179, 61, 61, 0.8) 50%, transparent 100%);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.introSection .introLine {
-    width: 120px;
-    height: 12px;
-    /* 대칭형: 중앙(50%) 기준 양쪽에 8.5%씩 간격을 둠 (41.5% + 17% gap + 41.5%) */
-    background:
-        linear-gradient(to right, transparent, rgba(179, 61, 61, 0.7)) no-repeat left center / 41.5% 1.2px,
-        linear-gradient(to left, transparent, rgba(179, 61, 61, 0.7)) no-repeat right center / 41.5% 1.2px;
-}
-
-.introLineLeft {
-    /* 마름모(0%) 기준 간격을 8.5%로 축소 */
-    background:
-        linear-gradient(to left, transparent, rgba(179, 61, 61, 0.7)) no-repeat right center / 91.5% 1.2px;
-}
-
-.introLineRight {
-    /* 마름모(100%) 기준 간격을 8.5%로 축소 */
-    background:
-        linear-gradient(to right, transparent, rgba(179, 61, 61, 0.7)) no-repeat left center / 91.5% 1.2px;
-}
-
-.introLine::after {
-    content: '';
-    width: 5px;
-    height: 5px;
+    width: 18px;
+    height: 2px;
     background-color: #b33d3d;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* 마름모의 중앙이 앵커 포인트에 정확히 오도록 고정합니다 */
-    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 1px;
+}
+
+/* 추가적인 레이아웃별 배경 스타일 제거 */
+.introSection .introLine,
+.introLineLeft,
+.introLineRight {
+    background: #b33d3d;
 }
 
 
-
-
-
-
-/* 마름모 위치 조정 (중심 기준 쏠림 반영) */
-.introLineLeft::after {
-    left: 0%;
-}
-
-.introLineRight::after {
-    left: 100%;
-}
 
 /* Section 2 & 3: Split Layouts */
 .splitSection {
@@ -484,6 +443,10 @@
 .finalSection {
     background-color: #ffffff;
     padding-bottom: 15vw;
+}
+
+.finalSection .introLine {
+    margin-bottom: 1.2rem;
 }
 
 .finalButton {

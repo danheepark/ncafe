@@ -205,6 +205,7 @@ export default function Home() {
 
       {/* SECTION 6 — 마지막 CTA */}
       <section className={`${styles.section} ${styles.finalSection}`}>
+        <div className={styles.introLine}></div>
         <h2 className={styles.headline_md}>지금, 조금 더 편안한 운영을 시작하세요</h2>
         <Link
           href="/admin/menus"
