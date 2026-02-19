@@ -1,0 +1,128 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--color-gray-500);
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.statCard {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: #FDFCFA;
+    border: 1px solid #E5E1DB;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.statCard:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.statIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.75rem;
+    background-color: var(--color-primary-50);
+    color: var(--color-primary-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.statBody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.statValue {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: var(--color-gray-500);
+}
+
+.statArrow {
+    color: var(--color-gray-300);
+    flex-shrink: 0;
+}
+
+/* Section */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+}
+
+/* Quick Links */
+.quickLinks {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.quickLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--color-primary-500);
+    border-radius: 9999px;
+    color: var(--color-primary-500);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.quickLink:hover {
+    background-color: var(--color-primary-500);
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -3,8 +3,8 @@
     gap: 1rem;
     padding: 1rem 2rem;
     overflow-x: auto;
-    background-color: #fff;
-    border-bottom: 1px solid #f0f0f0;
+    background-color: transparent;
+    border-bottom: none;
 }
 
 .tab {

@@ -9,7 +9,9 @@ interface CategoryListProps {
 }
 
 export default function CategoryList({ selectedCategory, setSelectedCategory }: CategoryListProps) {
-    const { categories } = useCategories();
+    const { categories, isLoading } = useCategories();
+
+    console.log("[CategoryList] Render state:", { categories, isLoading, selectedCategory });
 
     return (
         <div className={styles.container}>

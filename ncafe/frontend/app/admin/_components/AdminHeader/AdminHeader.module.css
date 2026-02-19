@@ -1,7 +1,7 @@
 .header {
     height: 64px;
-    background-color: white;
-    border-bottom: 1px solid var(--color-gray-200);
+    background-color: #F9F7F2;
+    border-bottom: 1px solid #E5E1DB;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     height: 8px;
     background-color: var(--color-error);
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid #F9F7F2;
 }
 
 .profile {

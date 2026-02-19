@@ -1,12 +1,22 @@
 import type { NextConfig } from "next";
 
+const backendUrl = process.env.BACKEND_URL || 'http://backend:8080';
+
 const nextConfig: NextConfig = {
+  // Docker 배포 시 standalone 빌드 사용 (경량 런타임)
+  output: 'standalone',
   images: {
     unoptimized: true,
     remotePatterns: [
       {
         protocol: 'http',
         hostname: 'localhost',
+        port: '8080',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'backend',
         port: '8080',
         pathname: '/**',
       },
@@ -23,15 +33,16 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    if (process.env.NODE_ENV === 'development') {
-      return [
-        {
-          source: '/api/v1/:path*',
-          destination: 'http://localhost:8080/:path*',
-        },
-      ];
-    }
-    return [];
+    return [
+      {
+        source: '/api/v1/:path*',
+        destination: `${backendUrl}/:path*`,
+      },
+      {
+        source: '/api/:path*',
+        destination: `${backendUrl}/:path*`,
+      },
+    ];
   },
 };
 

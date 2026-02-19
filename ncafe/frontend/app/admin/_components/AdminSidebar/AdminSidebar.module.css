@@ -1,11 +1,12 @@
 .sidebar {
     width: 240px;
-    background-color: var(--color-gray-900);
-    color: white;
+    background-color: #F9F7F2;
+    color: var(--color-gray-700);
     display: flex;
     flex-direction: column;
     padding: var(--space-6) 0;
     transition: all 0.3s ease;
+    border-right: 1px solid #E5E1DB;
 }
 
 .logo {
@@ -31,22 +32,24 @@
     align-items: center;
     gap: var(--space-4);
     padding: var(--space-3) var(--space-6);
-    color: var(--color-gray-400);
+    color: var(--color-gray-500);
     transition: all 0.2s ease;
 }
 
 .navItem:hover {
-    background-color: var(--color-gray-800);
-    color: white;
+    background-color: #EDE9E3;
+    color: var(--color-gray-800);
 }
 
 .active {
-    background-color: var(--color-primary-600);
-    color: white;
+    background-color: var(--color-primary-100);
+    color: var(--color-primary-600);
+    font-weight: 600;
 }
 
 .active:hover {
-    background-color: var(--color-primary-700);
+    background-color: var(--color-primary-100);
+    color: var(--color-primary-700);
 }
 
 .footer {

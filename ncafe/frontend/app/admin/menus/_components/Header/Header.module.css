@@ -1,7 +1,7 @@
 .header {
     padding: 2rem;
-    background-color: #fff;
-    border-bottom: 1px solid #f0f0f0;
+    background-color: transparent;
+    border-bottom: 1px solid #E5E1DB;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -27,16 +27,18 @@
 
 .addButton {
     padding: 0.6rem 1.2rem;
-    background-color: #0070f3;
-    color: white;
+    background-color: transparent;
+    color: #b33d3d;
+    border: 1px solid #b33d3d;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.2s;
+    transition: all 0.2s ease;
 }
 
 .addButton:hover {
-    opacity: 0.9;
+    background-color: #b33d3d;
+    color: #ffffff;
 }
 
 .searchSection {

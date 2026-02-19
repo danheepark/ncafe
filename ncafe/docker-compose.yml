@@ -1,0 +1,51 @@
+services:
+  # ─── Spring Boot Backend ─────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_PROJECT_NAME:-ncafe}-backend
+    restart: unless-stopped
+    ports:
+      # .env 파일의 BACKEND_PORT로 호스트 포트 변경 가능 (기본값: 8080)
+      - "${BACKEND_PORT:-8080}:8080"
+    environment:
+      # 외부 PostgreSQL DB 연결 정보 (application.properties를 환경변수로 오버라이드)
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://db.newlecture.com:5432/ncafedb?useSSL=false&allowPublicKeyRetrieval=true}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-ncafe}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-new_ibm2}
+    volumes:
+      # 업로드된 파일을 호스트와 공유 (컨테이너 재시작 시 데이터 유지)
+      - /home/user/dist/ncafe/upload:/app/upload
+    networks:
+      - ncafe-net
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ─── Next.js Frontend ────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_PROJECT_NAME:-ncafe}-frontend
+    restart: unless-stopped
+    ports:
+      # .env 파일의 FRONTEND_PORT로 호스트 포트 변경 가능 (기본값: 3022)
+      - "${FRONTEND_PORT:-3022}:3000"
+    environment:
+      NODE_ENV: production
+      # 컨테이너 내부에서 backend 서비스로 프록시
+      BACKEND_URL: http://backend:8080
+    networks:
+      - ncafe-net
+    depends_on:
+      backend:
+        condition: service_started
+
+networks:
+  ncafe-net:
+    driver: bridge
