@@ -57,7 +57,7 @@ services:
       POSTGRES_USER: ncafe
       POSTGRES_PASSWORD: danhee123
     ports:
-      - "5422:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     networks:
