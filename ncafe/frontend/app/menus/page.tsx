@@ -26,16 +26,16 @@ export default function MenuListPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const catRes = await fetch("/api/categories");
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
+        const catRes = await fetch(`${apiBase}/categories`);
         const catData = await catRes.json();
-        // API가 배열을 직접 반환하는지, 혹은 { categories: [...] } 형태로 반환하는지 확인
         if (Array.isArray(catData)) {
           setCategories(catData);
         } else if (catData && Array.isArray(catData.categories)) {
           setCategories(catData.categories);
         }
 
-        const menuRes = await fetch("/api/menus");
+        const menuRes = await fetch(`${apiBase}/menus`);
         const menuData = await menuRes.json();
         if (menuData && Array.isArray(menuData.menus)) {
           setMenus(menuData.menus);
