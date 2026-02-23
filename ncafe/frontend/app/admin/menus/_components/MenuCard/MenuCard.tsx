@@ -15,7 +15,7 @@ interface MenuCardProps {
 }
 
 const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) => {
-    const imageUrl = menu.imageSrc;
+    const imageUrl = menu.imageUrls && menu.imageUrls.length > 0 ? menu.imageUrls[0] : null;
     console.log("Image URL:", imageUrl);
 
     return (
@@ -24,12 +24,12 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
                 <div className={styles.imageContainer}>
                     {imageUrl ? (
                         <Image
-                            src={`/images/${menu.imageSrc}`}
+                            src={imageUrl.startsWith('http') ? imageUrl : `/images/${imageUrl}`}
                             alt={menu.korName}
                             fill
                             className={styles.image}
-                            onLoad={() => console.log(`Image loaded: ${menu.imageSrc}`)}
-                            onError={() => console.error(`Image failed to load: ${menu.imageSrc}`)}
+                            onLoad={() => console.log(`Image loaded: ${imageUrl}`)}
+                            onError={() => console.error(`Image failed to load: ${imageUrl}`)}
                         />
                     ) : (
                         <div className={styles.placeholder}>이미지 없음</div>
