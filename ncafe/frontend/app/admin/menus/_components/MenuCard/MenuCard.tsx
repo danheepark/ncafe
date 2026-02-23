@@ -16,9 +16,13 @@ interface MenuCardProps {
 
 const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) => {
     const imageUrl = menu.imageUrls && menu.imageUrls.length > 0 ? menu.imageUrls[0] : null;
-    // backend upload 폴더 기준으로 경로 생성
+    // /admin/이 포함되어 있으면 /upload/로 치환, 아니면 /upload/파일명으로 접근
     const resolvedImageUrl = imageUrl
-        ? (imageUrl.startsWith('http') ? imageUrl : `/upload/${imageUrl}`)
+        ? (imageUrl.startsWith('http')
+            ? imageUrl
+            : imageUrl.startsWith('/admin/')
+                ? imageUrl.replace('/admin/', '/upload/')
+                : `/upload/${imageUrl}`)
         : null;
     console.log("Image URL:", resolvedImageUrl);
 
