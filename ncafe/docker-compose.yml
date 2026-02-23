@@ -8,13 +8,13 @@ services:
     restart: always
     ports:
       # .env 파일의 BACKEND_PORT로 호스트 포트 변경 가능 (기본값: 8080)
-      - "8022:8022"
+      - "8080:8022"
     environment:
       # 외부 PostgreSQL DB 연결 정보 (application.properties를 환경변수로 오버라이드)
       SERVER_PORT: 8022
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://db:5432/ncafedb}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-ncafe}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-danhee123}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-1111}
     volumes:
       # 업로드된 파일을 호스트와 공유 (컨테이너 재시작 시 데이터 유지)
       - ./backend/upload:/app/upload
