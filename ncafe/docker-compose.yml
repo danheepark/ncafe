@@ -20,12 +20,12 @@ services:
       - ./backend/upload:/app/upload
     networks:
       - ncafe-net
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8022/actuator/health || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
+#    healthcheck:
+#      test: ["CMD-SHELL", "wget -qO- http://localhost:8022/actuator/health || exit 1"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 60s
 
   # ─── Next.js Frontend ────────────────────────────────────────────────────────
   frontend:
