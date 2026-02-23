@@ -16,20 +16,24 @@ interface MenuCardProps {
 
 const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) => {
     const imageUrl = menu.imageUrls && menu.imageUrls.length > 0 ? menu.imageUrls[0] : null;
-    console.log("Image URL:", imageUrl);
+    // backend upload 폴더 기준으로 경로 생성
+    const resolvedImageUrl = imageUrl
+        ? (imageUrl.startsWith('http') ? imageUrl : `/upload/${imageUrl}`)
+        : null;
+    console.log("Image URL:", resolvedImageUrl);
 
     return (
         <div className={`${styles.card} ${menu.isAvailable ? '' : styles.soldOut}`}>
             <Link href={`/admin/menus/${menu.id}`} className={styles.cardLink}>
                 <div className={styles.imageContainer}>
-                    {imageUrl ? (
+                    {resolvedImageUrl ? (
                         <Image
-                            src={imageUrl.startsWith('http') ? imageUrl : `/images/${imageUrl}`}
+                            src={resolvedImageUrl}
                             alt={menu.korName}
                             fill
                             className={styles.image}
-                            onLoad={() => console.log(`Image loaded: ${imageUrl}`)}
-                            onError={() => console.error(`Image failed to load: ${imageUrl}`)}
+                            onLoad={() => console.log(`Image loaded: ${resolvedImageUrl}`)}
+                            onError={() => console.error(`Image failed to load: ${resolvedImageUrl}`)}
                         />
                     ) : (
                         <div className={styles.placeholder}>이미지 없음</div>
