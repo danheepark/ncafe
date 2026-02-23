@@ -26,8 +26,11 @@ export default function MenuListPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // 실제 백엔드 엔드포인트에 맞게 /admin/menus, /admin/categories로 요청
         const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
-        const catRes = await fetch(`${apiBase}/categories`);
+        // /api → /admin으로 치환
+        const adminBase = apiBase.replace(/\/api$/, '/admin');
+        const catRes = await fetch(`${adminBase}/categories`);
         const catData = await catRes.json();
         if (Array.isArray(catData)) {
           setCategories(catData);
@@ -35,7 +38,7 @@ export default function MenuListPage() {
           setCategories(catData.categories);
         }
 
-        const menuRes = await fetch(`${apiBase}/menus`);
+        const menuRes = await fetch(`${adminBase}/menus`);
         const menuData = await menuRes.json();
         if (menuData && Array.isArray(menuData.menus)) {
           setMenus(menuData.menus);
