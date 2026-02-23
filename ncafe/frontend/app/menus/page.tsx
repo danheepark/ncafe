@@ -26,11 +26,9 @@ export default function MenuListPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 실제 백엔드 엔드포인트에 맞게 /admin/menus, /admin/categories로 요청
+        // 손님 API 엔드포인트(/api/menus, /api/categories)로 요청
         const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
-        // /api → /admin으로 치환
-        const adminBase = apiBase.replace(/\/api$/, '/admin');
-        const catRes = await fetch(`${adminBase}/categories`);
+        const catRes = await fetch(`${apiBase}/categories`);
         const catData = await catRes.json();
         if (Array.isArray(catData)) {
           setCategories(catData);
@@ -38,7 +36,7 @@ export default function MenuListPage() {
           setCategories(catData.categories);
         }
 
-        const menuRes = await fetch(`${adminBase}/menus`);
+        const menuRes = await fetch(`${apiBase}/menus`);
         const menuData = await menuRes.json();
         if (menuData && Array.isArray(menuData.menus)) {
           setMenus(menuData.menus);
@@ -115,7 +113,11 @@ export default function MenuListPage() {
               <div className={styles.imageWrapper}>
                 {menu.images && menu.images[0] ? (
                   <Image
-                    src={menu.images[0].srcUrl.startsWith('http') ? menu.images[0].srcUrl : `/images/${menu.images[0].srcUrl}`}
+                    src={menu.images[0].srcUrl.startsWith('http')
+                      ? menu.images[0].srcUrl
+                      : menu.images[0].srcUrl.startsWith('/admin/')
+                        ? menu.images[0].srcUrl.replace('/admin/', '/upload/')
+                        : `/upload/${menu.images[0].srcUrl}`}
                     alt={menu.korName}
                     fill
                     className={styles.menuImage}
