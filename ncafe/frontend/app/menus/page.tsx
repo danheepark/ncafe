@@ -113,11 +113,19 @@ export default function MenuListPage() {
               <div className={styles.imageWrapper}>
                 {menu.images && menu.images[0] ? (
                   <Image
-                    src={menu.images[0].srcUrl.startsWith('http')
-                      ? menu.images[0].srcUrl
-                      : menu.images[0].srcUrl.startsWith('/admin/')
-                        ? menu.images[0].srcUrl.replace('/admin/', '/upload/')
-                        : `/upload/${menu.images[0].srcUrl}`}
+                    src={(() => {
+                      const srcUrl = menu.images[0].srcUrl;
+                      if (srcUrl.startsWith('http://localhost:8080/')) {
+                        return '/upload/' + srcUrl.split('8080/')[1];
+                      }
+                      if (srcUrl.startsWith('http')) {
+                        return srcUrl;
+                      }
+                      if (srcUrl.startsWith('/admin/')) {
+                        return srcUrl.replace('/admin/', '/upload/');
+                      }
+                      return `/upload/${srcUrl}`;
+                    })()}
                     alt={menu.korName}
                     fill
                     className={styles.menuImage}
