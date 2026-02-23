@@ -43,6 +43,38 @@
     overflow: hidden;
 }
 
+.nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2.5rem 5%;
+    z-index: 100;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.adminLink {
+    font-family: var(--font-outfit);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--lux-espresso);
+    text-decoration: none;
+    padding: 0.7rem 1.6rem;
+    border: 1.5px solid var(--lux-gray-light);
+    border-radius: 999px;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    background: transparent;
+}
+
+.adminLink:hover {
+    background: #fff;
+    color: var(--lux-espresso);
+    border-color: var(--lux-espresso);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(45, 27, 20, 0.05);
+}
+
 .heroLeft {
     flex: 1.2;
     position: relative;
@@ -373,8 +405,8 @@
 
 .backgroundImage {
     object-fit: cover;
-    object-position: bottom;
-    /* Anchor to bottom, crops from top */
+    object-position: 50% 30%;
+    /* 50% horizontal, 25% vertical for precise adjustment */
     width: 100%;
     height: 100%;
 }
@@ -400,9 +432,9 @@
     font-size: clamp(0.9rem, 2.2vw, 1.6rem);
     /* 크기 더 축소 */
     font-weight: 300;
-    color: #ffffff;
+    color: #f3f3f3;
     /* 그림자 강화하여 가독성 확보 */
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 4px 10px rgba(0, 0, 0, 0.8), 0 2px 2px rgba(0, 0, 0, 1);
     text-align: center;
     line-height: 1.4;
     letter-spacing: -0.01em;

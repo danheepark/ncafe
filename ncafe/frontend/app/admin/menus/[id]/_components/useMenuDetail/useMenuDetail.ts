@@ -10,7 +10,7 @@ export interface MenuDetail {
     isAvailable: boolean;
     createdAt: string;
     description: string;
-    imageSrc: string;
+    imageUrls: string[];
 }
 
 export function useMenuDetail(id: string) {

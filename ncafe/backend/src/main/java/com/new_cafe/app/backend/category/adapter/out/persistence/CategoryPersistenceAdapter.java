@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * [Persistence Adapter] Category
  */
-@Component
+@Component("customerCategoryPersistenceAdapter")
 @RequiredArgsConstructor
 class CategoryPersistenceAdapter implements LoadCategoryPort {
 

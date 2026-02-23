@@ -1,7 +1,5 @@
 package com.new_cafe.app.backend.menu.adapter.out.persistence;
 
-import com.new_cafe.app.backend.category.adapter.out.persistence.CategoryJpaEntity;
-import com.new_cafe.app.backend.category.domain.Category;
 import com.new_cafe.app.backend.menu.domain.Menu;
 import com.new_cafe.app.backend.menu.domain.MenuImage;
 import org.springframework.stereotype.Component;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Component;
  * 외부 계층인 JPA Entity와 내부 계층인 Domain Model을 변환합니다.
  */
 @Component
-class MenuPersistenceMapper {
+public class MenuPersistenceMapper {
 
     public Menu toDomain(MenuJpaEntity entity) {
         if (entity == null) return null;
@@ -23,20 +21,10 @@ class MenuPersistenceMapper {
                 .description(entity.getDescription())
                 .price(parsePriceToInt(entity.getPrice()))
                 .categoryId(entity.getCategory() != null ? entity.getCategory().getId() : null)
-                .category(toDomainCategory(entity.getCategory()))
+                .categoryName(entity.getCategory() != null ? entity.getCategory().getName() : null)
                 .isAvailable(entity.getIsAvailable())
                 .createdAt(entity.getCreatedAt())
                 .updatedAt(entity.getUpdatedAt())
-                .build();
-    }
-
-    private Category toDomainCategory(CategoryJpaEntity entity) {
-        if (entity == null) return null;
-        return Category.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .icon(entity.getIcon())
-                .sortOrder(entity.getSortOrder())
                 .build();
     }
 

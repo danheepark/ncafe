@@ -22,9 +22,11 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
+import { CartProvider } from "./_context/CartContext";
+
 export const metadata: Metadata = {
-  title: "New Café | Premium Café Management SaaS",
-  description: "Build a café brand that people remember. Manage menus, orders, and join a modern community.",
+  title: "N.CAFE | 몰입과 휴식을 위한 공간",
+  description: "당신의 일상에 감각적인 여유를 더하는 프리미엄 카페 브랜드, N.CAFE입니다.",
 };
 
 export default function RootLayout({
@@ -41,7 +43,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${outfit.variable}`}>
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

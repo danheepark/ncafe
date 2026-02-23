@@ -5,12 +5,13 @@ export interface MenuResponse {
     korName: string;
     engName: string;
     description: string;
-    price: string;
+    price: number;
     categoryId: number;
+    categoryName: string;
     isAvailable: boolean;
     createdAt: string;
     updatedAt: string;
-    imageSrc: string;
+    imageUrls: string[];
 }
 
 export function useMenus(selectedCategory: string | number | null | undefined, searchQuery: string | undefined) {
@@ -42,6 +43,7 @@ export function useMenus(selectedCategory: string | number | null | undefined, s
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                    credentials: 'include',
                 });
 
                 console.log(`Fetching from: ${url.toString()}, Status: ${response.status}`);

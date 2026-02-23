@@ -10,7 +10,10 @@ import java.util.Optional;
  */
 public interface LoadMenuPort {
     List<Menu> findAll();
+    
+    // 🆕 필터 조회를 위한 메서드 추가
+    List<Menu> findByCondition(Long categoryId, String searchQuery);
+    
     Optional<Menu> findById(Long id);
-    List<Menu> findByCategoryId(Long categoryId);
     List<MenuImage> findImagesByMenuId(Long menuId);
 }

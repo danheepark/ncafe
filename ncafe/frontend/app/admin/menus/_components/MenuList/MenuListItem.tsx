@@ -30,14 +30,21 @@ export default function MenuListItem({ menu }: MenuListItemProps) {
     return (
         <Link href={`/admin/menus/${menu.id}`} className={styles.cardLink}>
             <div className={styles.card}>
-                <div
-                    className={styles.imagePlaceholder}
-                    style={menu.imageSrc ? {
-                        backgroundImage: `url(/images/${menu.imageSrc})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    } : {}}
-                />
+                <div className={styles.imagePlaceholder}>
+                    {menu.imageUrls && menu.imageUrls[0] ? (
+                        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                            <img
+                                src={menu.imageUrls[0]}
+                                alt={menu.korName}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-center h-full text-gray-400">
+                            이미지 없음
+                        </div>
+                    )}
+                </div>
                 <div className={styles.content}>
                     <div className={styles.header}>
                         <h3 className={styles.name}>{menu.korName}</h3>

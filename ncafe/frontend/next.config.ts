@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.BACKEND_URL || 'http://backend:8080';
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080';
 
 const nextConfig: NextConfig = {
   // Docker 배포 시 standalone 빌드 사용 (경량 런타임)
@@ -39,8 +39,16 @@ const nextConfig: NextConfig = {
         destination: `${backendUrl}/:path*`,
       },
       {
+        source: '/api/admin/:path*',
+        destination: `${backendUrl}/admin/:path*`,
+      },
+      {
         source: '/api/:path*',
-        destination: `${backendUrl}/:path*`,
+        destination: `${backendUrl}/api/:path*`,
+      },
+      {
+        source: '/images/:path*',
+        destination: `${backendUrl}/images/:path*`,
       },
     ];
   },

@@ -17,7 +17,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-danhee123}
     volumes:
       # 업로드된 파일을 호스트와 공유 (컨테이너 재시작 시 데이터 유지)
-      - /home/danheepark/www/ncafe/ncafe/upload:/app/upload
+      - ./backend/upload:/app/upload
     networks:
       - ncafe-net
     healthcheck:
@@ -55,7 +55,7 @@ services:
     environment:
       POSTGRES_DB: ncafedb
       POSTGRES_USER: ncafe
-      POSTGRES_PASSWORD: danhee123
+      POSTGRES_PASSWORD: 1111
     ports:
       - "${DB_PORT:-5432}:5432"
     volumes:

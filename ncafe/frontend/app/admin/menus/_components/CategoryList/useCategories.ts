@@ -26,7 +26,9 @@ export function useCategories() {
 
                 console.log(`[useCategories] Fetching from: ${url.toString()}`);
 
-                const response = await fetch(url.toString());
+                const response = await fetch(url.toString(), {
+                    credentials: 'include',
+                });
 
                 if (!response.ok) {
                     const errText = await response.text();

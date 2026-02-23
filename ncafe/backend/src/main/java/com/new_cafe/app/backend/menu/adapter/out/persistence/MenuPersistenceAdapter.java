@@ -11,10 +11,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * [Persistence Adapter]
- * LoadMenuPort를 구현하여 도메인 계층에 데이터를 제공합니다.
+ * [Persistence Adapter] 일반 사용자용 메뉴 로드 어댑터
  */
-@Component
+@Component("customerMenuPersistenceAdapter")
 @RequiredArgsConstructor
 class MenuPersistenceAdapter implements LoadMenuPort {
 
@@ -30,17 +29,19 @@ class MenuPersistenceAdapter implements LoadMenuPort {
     }
 
     @Override
-    public Optional<Menu> findById(Long id) {
-        return menuJpaRepository.findById(id)
-                .map(mapper::toDomain);
+    public List<Menu> findByCondition(Long categoryId, String searchQuery) {
+        // 간단한 필터링 로직 구현 (실무에선 QueryDSL 등을 권장하지만, 우선 Java Stream으로 구현)
+        return menuJpaRepository.findAll().stream()
+                .filter(entity -> categoryId == null || (entity.getCategory() != null && entity.getCategory().getId().equals(categoryId)))
+                .filter(entity -> searchQuery == null || entity.getKorName().contains(searchQuery) || (entity.getEngName() != null && entity.getEngName().toLowerCase().contains(searchQuery.toLowerCase())))
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Menu> findByCategoryId(Long categoryId) {
-        return menuJpaRepository.findAll().stream()
-                .filter(entity -> entity.getCategory() != null && entity.getCategory().getId().equals(categoryId))
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
+    public Optional<Menu> findById(Long id) {
+        return menuJpaRepository.findById(id)
+                .map(mapper::toDomain);
     }
 
     @Override

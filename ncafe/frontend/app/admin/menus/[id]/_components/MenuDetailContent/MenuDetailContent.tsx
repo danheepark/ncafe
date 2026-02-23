@@ -83,6 +83,7 @@ export default function MenuDetailContent({ id }: MenuDetailContentProps) {
                     <MenuDetailGallery
                         menuId={menu.id}
                         menuName={menu.korName}
+                        imageUrls={menu.imageUrls}
                     />
 
                     {/* Options - 메뉴 옵션 관리 (더미 데이터) */}
