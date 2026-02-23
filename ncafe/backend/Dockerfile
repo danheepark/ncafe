@@ -33,7 +33,7 @@ VOLUME ["/app/upload"]
 COPY --from=builder /app/build/libs/*.jar app.jar
 
 # 포트 노출
-EXPOSE 8080
+EXPOSE 8022
 
 # 컨테이너 실행 시 JAR 구동
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
