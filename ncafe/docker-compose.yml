@@ -20,6 +20,9 @@ services:
       - ./backend/upload:/app/upload
     networks:
       - ncafe-net
+    depends_on:
+      db:
+        condition: service_started
 #    healthcheck:
 #      test: ["CMD-SHELL", "wget -qO- http://localhost:8022/actuator/health || exit 1"]
 #      interval: 30s
@@ -57,7 +60,7 @@ services:
       POSTGRES_USER: ncafe
       POSTGRES_PASSWORD: 1111
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5433:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     networks:
