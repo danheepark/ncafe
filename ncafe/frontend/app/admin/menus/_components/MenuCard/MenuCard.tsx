@@ -21,8 +21,8 @@ const MenuCard = ({ menu, onToggleSoldOut, onEdit, onDelete }: MenuCardProps) =>
         ? (imageUrl.startsWith('http')
             ? imageUrl
             : imageUrl.startsWith('/admin/')
-                ? imageUrl.replace('/admin/', '/upload/')
-                : `/upload/${imageUrl}`)
+                ? imageUrl.replace('/admin/', '/images/')
+                : `/images/${imageUrl}`)
         : null;
     console.log("Image URL:", resolvedImageUrl);
 

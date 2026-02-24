@@ -27,7 +27,7 @@ export default function MenuListPage() {
     const fetchData = async () => {
       try {
         // 손님 API 엔드포인트(/api/menus, /api/categories)로 요청
-        const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || "/api";
         const catRes = await fetch(`${apiBase}/categories`);
         const catData = await catRes.json();
         if (Array.isArray(catData)) {
@@ -116,15 +116,15 @@ export default function MenuListPage() {
                     src={(() => {
                       const srcUrl = menu.images[0].srcUrl;
                       if (srcUrl.startsWith('http://localhost:8080/')) {
-                        return '/upload/' + srcUrl.split('8080/')[1];
+                        return '/images/' + srcUrl.split('8080/')[1];
                       }
                       if (srcUrl.startsWith('http')) {
                         return srcUrl;
                       }
                       if (srcUrl.startsWith('/admin/')) {
-                        return srcUrl.replace('/admin/', '/upload/');
+                        return srcUrl.replace('/admin/', '/images/');
                       }
-                      return `/upload/${srcUrl}`;
+                      return `/images/${srcUrl}`;
                     })()}
                     alt={menu.korName}
                     fill

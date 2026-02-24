@@ -34,7 +34,19 @@ export default function MenuListItem({ menu }: MenuListItemProps) {
                     {menu.imageUrls && menu.imageUrls[0] ? (
                         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                             <img
-                                src={menu.imageUrls[0]}
+                                src={(() => {
+                                    const srcUrl = menu.imageUrls[0];
+                                    if (srcUrl.startsWith('http://localhost:8080/')) {
+                                        return '/images/' + srcUrl.split('8080/')[1];
+                                    }
+                                    if (srcUrl.startsWith('http')) {
+                                        return srcUrl;
+                                    }
+                                    if (srcUrl.startsWith('/admin/')) {
+                                        return srcUrl.replace('/admin/', '/images/');
+                                    }
+                                    return `/images/${srcUrl}`;
+                                })()}
                                 alt={menu.korName}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
