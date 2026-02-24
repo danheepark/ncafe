@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * 🆕 필터링 및 검색 기능을 지원합니다.
  */
 @RestController("customerMenuController")
-@RequestMapping("/api/menus") // 경로를 /api/menus로 더 명확하게 변경
+@RequestMapping("/menus") // /api 접두어 제거 (Proxy에서 처리)
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class MenuController {

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * [Web Adapter] 카테고리 컨트롤러
  */
 @RestController("customerCategoryController")
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class CategoryController {

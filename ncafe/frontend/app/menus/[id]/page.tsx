@@ -84,6 +84,7 @@ export default function MenuDetailPage() {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
+                // 절대 경로 사용을 보장하기 위해 /api/menus로 시작
                 const res = await fetch(`/api/menus/${id}`);
                 const data = await res.json();
                 setMenu(data);
