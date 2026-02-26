@@ -22,12 +22,6 @@ export default function Header({ transparent = false }: HeaderProps) {
                     <span className={styles.brandName}>N.CAFE</span>
                 </Link>
                 <nav className={styles.nav}>
-                    <Link href="/menus" className={styles.navLink}>
-                        Menu
-                    </Link>
-                    <Link href="/login" className={styles.loginButton}>
-                        Login
-                    </Link>
                     <Link href="/login?type=admin" className={styles.adminButton}>
                         내사장이오
                     </Link>
