@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -10,30 +9,11 @@ interface HeaderProps {
 }
 
 export default function Header({
-    transparent: initialTransparent = false,
+    transparent = false,
     hideLogo = false
 }: HeaderProps) {
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useEffect(() => {
-        if (!initialTransparent) return;
-
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [initialTransparent]);
-
-    const isTransparent = initialTransparent && !isScrolled;
-
     return (
-        <header className={`${styles.header} ${isTransparent ? styles.transparent : ""}`}>
+        <header className={`${styles.header} ${transparent ? styles.transparent : ""}`}>
             <div className={styles.container}>
                 {!hideLogo ? (
                     <Link href="/" className={styles.logo}>
