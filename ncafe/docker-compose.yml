@@ -1,3 +1,4 @@
+name: danhee-ncafe
 services:
   # ─── Spring Boot Backend ─────────────────────────────────────────────────────
   backend:
