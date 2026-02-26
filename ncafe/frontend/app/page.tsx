@@ -32,7 +32,7 @@ export default function Home() {
     return (
         <div className={styles.pageWrapper}>
             {/* HEADER / NAVIGATION */}
-            <Header transparent={true} />
+            <Header transparent={true} hideLogo={true} />
 
             {/* HERO SECTION */}
             <header className={styles.heroContainer}>

@@ -117,18 +117,20 @@
     font-family: var(--font-outfit);
     font-size: 0.85rem;
     font-weight: 500;
-    color: #fff;
-    background-color: var(--lux-espresso);
+    color: var(--lux-espresso);
     text-decoration: none;
     padding: 0.6rem 1.2rem;
+    border: 1.5px solid var(--lux-gray-light);
     border-radius: var(--radius-full);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    background: transparent;
 }
 
 .adminButton:hover {
-    background-color: var(--lux-espresso-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(45, 27, 20, 0.2);
+    background: #fff;
+    border-color: var(--lux-espresso);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(45, 27, 20, 0.05);
 }
 
 /* Landing page specific transparency adjustments */
@@ -142,9 +144,5 @@
 @media (max-width: 768px) {
     .nav {
         gap: 1rem;
-    }
-
-    .adminButton {
-        display: none;
     }
 }

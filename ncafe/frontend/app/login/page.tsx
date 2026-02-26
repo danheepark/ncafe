@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '@/components/common/Header/Header';
 import LoginCard from './_components/LoginCard/LoginCard';
 import styles from './LoginPage.module.css';
 import { Metadata } from 'next';
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 export default function LoginPage() {
     return (
         <div className={styles.pageContainer}>
-            <Header />
             {/* 배경 장식 */}
             <div className={styles.backgroundDecoration} />
             <div className={styles.backgroundDecorationBottom} />
