@@ -2,6 +2,8 @@
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--lux-espresso);
+  padding-top: 80px;
+  /* Header 높이만큼 여백 추가 */
   padding-bottom: 5rem;
 }
 

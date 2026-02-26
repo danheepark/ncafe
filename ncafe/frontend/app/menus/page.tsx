@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Coffee, Search, ShoppingBag } from "lucide-react";
+import Header from "@/components/common/Header/Header";
 import styles from "../MenuPage.module.css";
 
 interface Menu {
@@ -58,14 +59,7 @@ export default function MenuListPage() {
 
   return (
     <main className={styles.main}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <Link href="/" className={styles.logo}>N.CAFE</Link>
-          <button className={styles.cartButton}>
-            <ShoppingBag size={24} />
-          </button>
-        </div>
-      </header>
+      <Header />
 
       <section className={styles.searchSection}>
         <div className={styles.searchContainer}>

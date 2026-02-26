@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/common/Header/Header";
 import styles from "./LandingPage.module.css";
 
 const reviews = [
@@ -31,11 +32,7 @@ export default function Home() {
     return (
         <div className={styles.pageWrapper}>
             {/* HEADER / NAVIGATION */}
-            <nav className={styles.nav}>
-                <Link href="/login?type=admin" className={styles.adminLink}>
-                    내사장이오
-                </Link>
-            </nav>
+            <Header transparent={true} />
 
             {/* HERO SECTION */}
             <header className={styles.heroContainer}>

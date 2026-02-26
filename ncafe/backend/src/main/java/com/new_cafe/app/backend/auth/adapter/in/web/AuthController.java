@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
     private static final String SESSION_COOKIE_NAME = "ADMIN_SESSION";
