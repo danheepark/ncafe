@@ -14,6 +14,17 @@
     max-width: 440px;
 }
 
+.logoLink {
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.logoLink:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
 .logoArea {
     display: flex;
     flex-direction: column;
