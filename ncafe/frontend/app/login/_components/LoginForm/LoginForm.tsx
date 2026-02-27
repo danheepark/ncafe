@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { authApi } from '@/app/login/_lib/authApi';
+import { authAPI } from '@/app/lib/api';
 import styles from './LoginForm.module.css';
 
 interface LoginFormProps {
@@ -33,7 +33,10 @@ export default function LoginForm({ loginType }: LoginFormProps) {
 
         setIsLoading(true);
         try {
-            await authApi.login({ username, password });
+            await authAPI.login(username, password);
+
+            // 다른 컴포넌트에게 로그인 상태 변경 알림
+            window.dispatchEvent(new Event('login'));
 
             if (loginType === 'admin') {
                 router.push('/admin');

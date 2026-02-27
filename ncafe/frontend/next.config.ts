@@ -35,10 +35,6 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: `${backendUrl}/:path*`, // /api/menus -> backend/menus
-      },
-      {
         source: '/images/:path*',
         destination: `${backendUrl}/images/:path*`,
       },

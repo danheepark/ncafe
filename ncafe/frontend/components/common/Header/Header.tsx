@@ -1,6 +1,6 @@
-"use client";
-
+import { useState, useEffect } from 'react';
 import Link from "next/link";
+import { authAPI } from '@/app/lib/api';
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -12,6 +12,44 @@ export default function Header({
     transparent = false,
     hideLogo = false
 }: HeaderProps) {
+    const [user, setUser] = useState<any>(null);
+
+    const checkLoginStatus = async () => {
+        try {
+            const data = await authAPI.getSession();
+            setUser(data?.user || null);
+        } catch {
+            setUser(null);
+        }
+    };
+
+    useEffect(() => {
+        checkLoginStatus();
+
+        // 다른 컴포넌트에서 login/logout 이벤트 발생 시 갱신
+        const onLogin = () => checkLoginStatus();
+        const onLogout = () => setUser(null);
+
+        window.addEventListener('login', onLogin);
+        window.addEventListener('logout', onLogout);
+
+        return () => {
+            window.removeEventListener('login', onLogin);
+            window.removeEventListener('logout', onLogout);
+        };
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            await authAPI.logout();
+            setUser(null);
+            window.dispatchEvent(new Event('logout'));
+            window.location.href = '/'; // 로그아웃 후 홈으로
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    };
+
     return (
         <header className={`${styles.header} ${transparent ? styles.transparent : ""}`}>
             <div className={styles.container}>
@@ -32,11 +70,26 @@ export default function Header({
                     <div />
                 )}
                 <nav className={styles.nav}>
-                    <Link href="/login?type=admin" className={styles.adminButton}>
-                        내사장이오
-                    </Link>
+                    {user ? (
+                        <div className={styles.userInfo}>
+                            <span className={styles.userName}>{user.username}님</span>
+                            {user.role === 'ADMIN' && (
+                                <Link href="/admin" className={styles.adminLink}>
+                                    관리도구
+                                </Link>
+                            )}
+                            <button onClick={handleLogout} className={styles.logoutButton}>
+                                로그아웃
+                            </button>
+                        </div>
+                    ) : (
+                        <Link href="/login?type=admin" className={styles.adminButton}>
+                            내사장이오
+                        </Link>
+                    )}
                 </nav>
             </div>
         </header>
     );
 }
+
